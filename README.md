@@ -70,4 +70,4 @@ git clone https://github.com/mahmoudreda4424/ITI_EmployeeDepartmentMVC.git
 
 ## 📫 Contact
 
-- LinkedIn: [Mahmoud Reda](linkedin.com/in/mahmoudredaprofile)
+- LinkedIn: [Mahmoud Reda](https://www.linkedin.com/in/mahmoudredaprofile/)
