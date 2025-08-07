@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<style>
+    .nav-auth .nav-link {
+        color: #000 !important;
+        font-weight: 600;
+        padding: 8px 15px;
+        border-radius: 8px;
+        transition: 0.3s ease-in-out;
+    }
+
+        .nav-auth .nav-link:hover {
+            background-color: #343a40;
+            color: #ffc107 !important;
+            text-decoration: none;
+        }
+
+    .nav-auth .btn-logout {
+        border: none;
+        background: transparent;
+        font-weight: 600;
+        padding: 8px 15px;
+        border-radius: 8px;
+        color: #f8f9fa;
+        transition: 0.3s ease-in-out;
+    }
+
+        .nav-auth .btn-logout:hover {
+            background-color: #343a40;
+            color: #dc3545;
+            cursor: pointer;
+        }
+
+    .nav-auth .welcome-text {
+        color: #ffc107;
+        font-weight: bold;
+    }
+</style>
+
+<ul class="navbar-nav nav-auth d-flex align-items-center gap-2">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <span class="welcome-text">👋 Hello, @User.Identity?.Name!</span>
+        </li>
+        <li class="nav-item">
+            <form asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm" asp-route-returnUrl="/">
+                <button type="submit" class="btn-logout">🚪 Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">🔐 Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">📝 Register</a>
+        </li>
+    }
+</ul>

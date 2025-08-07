@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Lab10.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<style>
+    .custom-btn {
+        color: #000;
+        font-weight: 600;
+        padding: 8px 15px;
+        border-radius: 8px;
+        border: none;
+        background-color: #e2e6ea;
+        transition: 0.3s ease-in-out;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+        .custom-btn:hover {
+            background-color: #343a40;
+            color: #ffc107;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .custom-btn.danger:hover {
+            color: #dc3545;
+        }
+
+        .custom-btn.success {
+            background-color: #28a745;
+            color: white;
+        }
+
+            .custom-btn.success:hover {
+                background-color: #1e7e34;
+                color: white;
+            }
+
+        .custom-btn.info {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+            .custom-btn.info:hover {
+                background-color: #117a8b;
+                color: white;
+            }
+
+        .custom-btn.warning {
+            background-color: #ffc107;
+            color: black;
+        }
+
+            .custom-btn.warning:hover {
+                background-color: #e0a800;
+                color: black;
+            }
+</style>
+
+<div class="container mt-4">
+    <h2 class="mb-4">👥 Employees List</h2>
+
+    <a asp-action="Create" class="btn btn-success create-btn">
+        ➕ Create New Employee
+    </a>
+
+    <table class="table table-bordered table-hover shadow-sm rounded">
+        <thead class="table-light">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>@Html.DisplayNameFor(model => model.Department)</th>
+                <th style="width: 350px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.Department?.Name</td>
+                    <td>
+                        <form asp-action="Edit" asp-route-id="@item.Id" method="get" style="display:inline;">
+                            <button type="submit" class="custom-btn info">✏️ Edit</button>
+                        </form>
+
+                        <form asp-action="Details" asp-route-id="@item.Id" method="get" style="display:inline;">
+                            <button type="submit" class="custom-btn warning">🔍 Details</button>
+                        </form>
+
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="get" style="display:inline;">
+                            <button type="submit" class="custom-btn danger">🗑️ Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
